@@ -4,6 +4,8 @@
     {
         static void Main(string[] args)
         {
+            CustomList<string> myList = new CustomList<string>();
+
 
         }
     }

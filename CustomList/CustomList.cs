@@ -105,10 +105,29 @@ namespace CustomList
             //returns a single CustomList<T> that contains all items from firstList and all items from secondList 
             return combinedLists;
         }
+        public bool ContainsItem(T item)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                if (Equals(item, items[i]))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
 
         public static CustomList<T> operator -(CustomList<T> firstList, CustomList<T> secondList)
         {
-            CustomList<T> minusLists = firstList - secondList;
+            CustomList<T> minusLists = new CustomList<T>();
+            for (int i = 0; i < firstList.count; i ++)
+            {
+                T item = firstList.items[i];
+                if (secondList.ContainsItem(item))
+                {
+                    minusLists.Add(item);
+                }
+            }
             //returns a single CustomList<T> with all items from firstList, EXCEPT any items that also appear in secondList
             return minusLists;
         }

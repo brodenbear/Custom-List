@@ -7,8 +7,8 @@
         private int capacity;
         private int count;
 
-        public int Count { get => count;}
-        public int Capacity { get => capacity;}
+        public int Count { get => count; }
+        public int Capacity { get => capacity; }
         public T[] Items { get => items; set => items = value; }
         public T this[int index]
         {
@@ -27,24 +27,24 @@
         {
             capacity = 4;
             count = 0;
-            Items = new T[capacity];
+            items = new T[capacity];
         }
 
 
         //Member Methods (CAN DO)
         public void Add(T item)
         {
-            if (count >= capacity)
+            if (capacity <= count)
             {
                 capacity *= 2;
                 T[] newItems = new T[capacity];
                 for (int i = 0; i < count; i++)
                 {
-                    newItems[i] = Items[i];
+                    newItems[i] = items[i];
                 }
-                newItems = Items;
+                items = newItems;
             }
-            Items[count] = item;
+            items[count] = item;
             count++;
 
             //'item' parameter should be added to internal 'items' array
@@ -54,6 +54,17 @@
 
         public bool Remove(T item)
         {
+            int index = Array.IndexOf(items, item, 0, count);
+            if (index >= 0)
+            {
+                for (int i = index; i < count - 1; i++)
+                {
+                    items[i] = items[i + 1];
+                }
+                items[count - 1] = default(T);
+                count--;
+                return true;
+            }
             //If 'item' exists in the 'items' array, remove its first instance
             //Any items coming after the removed item should be shifted down so there is no empty index.
             //If 'item' was removed, return true. If no item was removed, return false.

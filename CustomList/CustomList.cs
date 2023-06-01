@@ -1,4 +1,6 @@
-﻿namespace CustomList
+﻿using System.Text;
+
+namespace CustomList
 {
     public class CustomList<T>
     {
@@ -72,9 +74,20 @@
         }
 
         public override string ToString()
+
         {
-            //returns a single string that contains all items from array
-            return "";
+            StringBuilder sb = new StringBuilder();
+            sb.Append("[");
+            for (int i = 0; i < count; i++)
+            {
+                sb.Append(items[i]);
+                if (i < count - 1)
+                {
+                    sb.Append(", ");
+                }
+            }
+            sb.Append("]");
+            return sb.ToString();
         }
 
         public static CustomList<T> operator +(CustomList<T> firstList, CustomList<T> secondList)

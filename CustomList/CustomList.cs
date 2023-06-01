@@ -92,14 +92,25 @@ namespace CustomList
 
         public static CustomList<T> operator +(CustomList<T> firstList, CustomList<T> secondList)
         {
+            CustomList<T> combinedLists = new CustomList<T>();
+            for (int i = 0; i < firstList.count; i++)
+            {
+                combinedLists.Add((T)firstList.items[i]);
+            }
+
+            for (int i = 0; i < secondList.count; i++)
+            {
+                combinedLists.Add((T)secondList.items[i]);
+            }
             //returns a single CustomList<T> that contains all items from firstList and all items from secondList 
-            return null;
+            return combinedLists;
         }
 
         public static CustomList<T> operator -(CustomList<T> firstList, CustomList<T> secondList)
         {
+            CustomList<T> minusLists = firstList - secondList;
             //returns a single CustomList<T> with all items from firstList, EXCEPT any items that also appear in secondList
-            return null;
+            return minusLists;
         }
 
 

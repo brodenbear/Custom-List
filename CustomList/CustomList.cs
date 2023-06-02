@@ -120,15 +120,45 @@ namespace CustomList
         public static CustomList<T> operator -(CustomList<T> firstList, CustomList<T> secondList)
         {
             CustomList<T> minusLists = new CustomList<T>();
-            for (int i = 0; i < firstList.count; i ++)
+
+            //Going to create a dictionary to keep track of item occurrences in secondList
+            Dictionary<T, int> itemOccurrences = new Dictionary<T, int>();
+
+            //Counting occurrences of items in secondList
+            for (int i = 0; i < secondList.count; i++)
             {
-                T item = firstList.items[i];
-                if (secondList.ContainsItem(item))
+                T currentItem = secondList[i];
+                if (itemOccurrences.ContainsKey(currentItem))
                 {
-                    minusLists.Add(item);
+                    itemOccurrences[currentItem]++;
+                }
+                else
+                {
+                    itemOccurrences[currentItem] = 1;
                 }
             }
-            //returns a single CustomList<T> with all items from firstList, EXCEPT any items that also appear in secondList
+
+            // Copy items from the first list to the result list, subtracting one instance of each item found in list2
+            for (int i = 0; i < firstList.count; i++)
+            {
+                T currentItem = firstList[i];
+                if (itemOccurrences.ContainsKey(currentItem))
+                {
+                    if (itemOccurrences[currentItem] > 0)
+                    {
+                        itemOccurrences[currentItem]--;
+                    }
+                    else
+                    {
+                        minusLists.Add(currentItem);
+                    }
+                }
+                else
+                {
+                    minusLists.Add(currentItem);
+                }
+            }
+
             return minusLists;
         }
 

@@ -88,5 +88,84 @@ namespace CustomListTests
             Assert.AreEqual(8, result[3]);
             //3 Asserts that show results in the index locations necessary
         }
+        [TestMethod]
+        public void MinusOperatorOverload_ListLength_FirstListLongerThanSecondList()
+        {
+            //Arrange
+            CustomList<int> myList1 = new CustomList<int>();
+            CustomList<int> myListTwo = new CustomList<int>();
+            myList1.Add(1);
+            myList1.Add(2);
+            myListTwo.Add(1);
+            myListTwo.Add(3);
+            myListTwo.Add(5);
+
+            //Act
+            CustomList<int> result = myList1 - myListTwo;
+
+            //Assert
+            Assert.AreEqual(result[0], 2);
+        }
+        [TestMethod]
+        public void MinusOperatorOverload_ListLength_SecondListLongerThanFirstList()
+        {
+            //Arrange
+            CustomList<int> myList1 = new CustomList<int>();
+            CustomList<int> myListTwo = new CustomList<int>();
+            myList1.Add(1);
+            myList1.Add(3);
+            myList1.Add(7);
+
+            myListTwo.Add(5);
+            myListTwo.Add(1);
+            myListTwo.Add(3);
+            myListTwo.Add(5);
+
+            //Act
+            CustomList<int> result = myList1 - myListTwo;
+
+            //Assert
+            Assert.AreEqual(result[0], 7);
+        }
+        [TestMethod]
+        public void MinusOperatorOverload_ListLengthEmpty_EmptyListResultsUnchanged()
+        {
+            //Arrange
+            CustomList<int> myList1 = new CustomList<int>();
+            CustomList<int> myListTwo = new CustomList<int>();
+
+            myList1.Add(1);
+            myList1.Add(3);
+            myList1.Add(5);
+
+            //Act
+            CustomList<int> result = myList1 - myListTwo;
+
+            //Assert
+            Assert.AreEqual(result[0], 1);
+            Console.WriteLine(result);
+        }
+        [TestMethod]
+        public void MinusOperatorOverload_RemoveOne_OnlyRemoveSingleInstanceOfNumber()
+        {
+            //Arrange
+            CustomList<int> myList1 = new CustomList<int>();
+            CustomList<int> myListTwo = new CustomList<int>();
+
+            myList1.Add(1);
+            myList1.Add(3);
+            myList1.Add(3);
+            myList1.Add(5);
+
+            myListTwo.Add(1);
+            myListTwo.Add(3);
+
+            //Act
+            CustomList<int> result = myList1 - myListTwo;
+
+            //Assert
+            Assert.AreEqual(result[0], 3);
+            Console.WriteLine(result);
+        }
     }
 }

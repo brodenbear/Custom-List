@@ -1,0 +1,53 @@
+﻿CustomList<T> - Operator Overload Method
+Definition:
+	Removes one instance of a custom list class from another instance of a custom list class.
+	C#
+	CustomList<T> - CustomList<T>
+Parameters:
+	T
+    specifies the type of elements in the list
+Returns:
+	returns the result of operation. 
+Examples:
+	using System.Text;
+
+namespace CustomList
+{
+    public class CustomList<T>
+    {
+        //Member Variables (HAS A)
+        private T[] items;
+        private int capacity;
+        private int count;
+
+        public int Count { get => count; }
+        public int Capacity { get => capacity; }
+        public T[] Items { get => items; set => items = value; }
+        public T this[int index]
+        {
+            get
+            {
+                return Items[index];
+            }
+            set
+            {
+                Items[index] = value;
+            }
+        }
+
+        //Constructor
+        public CustomList()
+        {
+            capacity = 4;
+            count = 0;
+            items = new T[capacity];
+        }
+
+        CustomList<int> myList1 = new CustomList<int>();
+        CustomList<int> myListTwo = new CustomList<int>();
+        myList1.Add(1);
+         myListTwo.Add(1);
+            myListTwo.Add(3);
+            myListTwo.Add(5);
+        CustomList<int> result = myList1 - myListTwo;
+        Console.WriteLine(result);

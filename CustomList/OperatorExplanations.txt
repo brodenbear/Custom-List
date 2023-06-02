@@ -3,6 +3,10 @@ Definition:
 	Removes one instance of a custom list class from another instance of a custom list class.
 	C#
 	CustomList<T> - CustomList<T>
+Features:
+    Dictionary
+    This Operator uses a dictionary to keep track of item occurences. Each item occurence is recorded so if a value is in the first list twice, it will only remove a single occurence from the second list.
+
 Parameters:
 	T
     specifies the type of elements in the list

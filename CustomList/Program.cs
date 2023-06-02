@@ -5,10 +5,7 @@
         static void Main(string[] args)
         {
             CustomList<string> myList = new CustomList<string>();
-                myList.Add("Katie");
-                myList.Add("Broden");
-                myList.Add("Love");
 
-            }
+        }
     }
 }
